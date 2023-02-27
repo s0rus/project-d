@@ -1,36 +1,22 @@
 <script>
-	import { signIn, signOut } from '@auth/sveltekit/client';
-	import { page } from '$app/stores';
-	import { Avatar } from '@skeletonlabs/skeleton';
-	import RandomComponent from '$lib/Component.svelte';
+	import BasicAuth from '$lib/BasicAuth.svelte';
 </script>
 
-<div
-	class="container mx-auto flex h-full w-full flex-col items-center justify-center space-y-8 p-8"
->
-	<h1>Project D.</h1>
-	<p>Good luck and have fun!</p>
-
-	<RandomComponent />
-
-	<div class="card flex flex-col py-6 px-8">
-		{#if $page.data.session}
-			<div class="flex items-center justify-center">
-				{#if $page.data.session?.user?.image}
-					<Avatar src={$page.data.session?.user?.image} />
-				{/if}
-				<span class="ml-4 text-2xl font-bold">
-					{$page.data.session.user?.name ?? ''}
-				</span>
-			</div>
-			<button on:click={() => signOut()} class="btn variant-filled-primary mt-4 w-full"
-				>Sign out</button
-			>
-		{:else}
-			<span class="text-center text-2xl font-bold">You are not signed in.</span>
-			<button on:click={() => signIn('discord')} class="btn variant-filled-primary mt-4 w-full"
-				>Sign In with Discord</button
-			>
-		{/if}
+<header class="bg-surface-900 py-2 text-white">
+	<div class="container mx-auto flex items-center justify-between">
+		<h1 class="text-2xl font-bold">Project-D</h1>
+		<BasicAuth />
 	</div>
-</div>
+</header>
+
+<main class=" container mx-auto flex items-start justify-between bg-surface-700 py-8 px-4">
+	<aside class="flex w-1/4 justify-start ">left</aside>
+	<aside class="flex w-3/4 justify-center">Main content</aside>
+	<aside class="flex w-1/4 justify-end">right</aside>
+</main>
+
+<footer class=" py-4 text-white">
+	<div class="container mx-auto text-slate-700 ">
+		&copy; {new Date().getFullYear()} Project-D
+	</div>
+</footer>
