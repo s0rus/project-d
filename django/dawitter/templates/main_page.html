@@ -1,0 +1,26 @@
+{% extends "master.html" %}
+
+{% block content %}
+  <div class="mycard">
+    <h2>Add dweet!</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Add your dweet!</button>
+    </form>
+  </div>
+
+  <div class="mycard">
+    <h1>Dawitter</h1>
+    <ul>
+      {% for tweet in tweets %}
+        <li>Created by: {{ request.user }}, Created at: {{ tweet.created_at }} <br> <br>
+        {{ tweet.content }}  <br> <br>
+          Likes: {{ tweet.likes }}
+        </li>
+      <br>
+      {% endfor %}
+    </ul>
+  </div>
+
+{% endblock %}
